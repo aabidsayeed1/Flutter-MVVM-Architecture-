@@ -8,14 +8,14 @@ import 'package:mvvm/utils/utils.dart';
 import 'package:mvvm/view_model/auth_view_model.dart';
 import 'package:provider/provider.dart';
 
-class LoginView extends StatefulWidget {
-  const LoginView({Key? key}) : super(key: key);
+class SignUpView extends StatefulWidget {
+  const SignUpView({Key? key}) : super(key: key);
 
   @override
-  State<LoginView> createState() => _LoginViewState();
+  State<SignUpView> createState() => _SignUpViewState();
 }
 
-class _LoginViewState extends State<LoginView> {
+class _SignUpViewState extends State<SignUpView> {
   final ValueNotifier<bool> _obsecurePassword = ValueNotifier<bool>(true);
   TextEditingController emailC = TextEditingController();
   TextEditingController passwordC = TextEditingController();
@@ -34,7 +34,7 @@ class _LoginViewState extends State<LoginView> {
     final height = MediaQuery.of(context).size.height * 1;
     return Scaffold(
       appBar: AppBar(
-        title: Text('login'),
+        title: Text('SignUp'),
         centerTitle: true,
       ),
       body: SafeArea(
@@ -77,7 +77,7 @@ class _LoginViewState extends State<LoginView> {
                 height: height * 0.050,
               ),
               RoundButton(
-                  title: 'Login',
+                  title: 'SignUp',
                   loading: authViewModel.loading,
                   onPressed: () {
                     if (emailC.text.isEmpty) {
@@ -93,7 +93,7 @@ class _LoginViewState extends State<LoginView> {
                         "password": passwordC.text,
                       };
 
-                      authViewModel.loginApi(data, context);
+                      authViewModel.signUpApi(data, context);
                       authViewModel.setLoading(true);
                       if (kDebugMode) {
                         print('Abi Hit');
@@ -103,9 +103,9 @@ class _LoginViewState extends State<LoginView> {
               SizedBox(height: 20),
               TextButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, RoutesName.signUp);
+                    Navigator.pushNamed(context, RoutesName.login);
                   },
-                  child: Text('Dont have an Account? Sign Up Here')),
+                  child: Text('Already have an Account? Login Here'))
             ],
           ),
         ),
